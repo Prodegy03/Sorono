@@ -1,80 +1,121 @@
 /* CSS Variables - Teal Lagoon Palette */
 :root {
-    --deep-sea-teal: #014D4E;
-    --turquoise-teal: #30BFBF;
-    --pacific-blue: #027B8E;
-    --light-sea-blue: #20B2AA;
-    --sky-blue: #87CEEB;
+  --deep-sea-teal: #014D4E;
+  --turquoise-teal: #30BFBF;
+  --pacific-blue: #027B8E;
+  --light-sea-blue: #20B2AA;
+  --sky-blue: #87CEEB;
+}
+
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--sky-blue); /* Soft background */
+  color: var(--deep-sea-teal); /* Dark text */
+}
+
+/* Header */
+header {
+  padding: 1rem 2rem;
+  background-color: var(--deep-sea-teal); /* Deep Teal */
+  color: white;
+  text-align: center;
+}
+
+/* Main Heading */
+main h1 {
+  color: var(--pacific-blue); /* Pacific Blue */
+}
+
+/* Buttons */
+button, .button {
+  background-color: var(--turquoise-teal);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover, .button:hover {
+  background-color: var(--light-sea-blue); /* Lighter on hover */
+}
+
+/* Links */
+a {
+  color: var(--pacific-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--light-sea-blue);
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--deep-sea-teal);
+  color: white;
+}
+
+/* Customizer Section */
+.customizer-container {
+  background-color: var(--sky-blue);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.preview {
+  background-color: var(--turquoise-teal);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* 🎯 Product Image Scaling - Ensures Uniformity */
+.product img {
+  width: 100%; /* Image fills container */
+  height: 200px; /* Fixed height for uniformity */
+  object-fit: cover; /* Prevents distortion, crops excess */
+  border-radius: 5px; /* Smooth edges */
+}
+
+/* 🎯 Responsive Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+  gap: 15px;
+  padding: 20px;
+}
+
+/* 🎯 Carousel Styling */
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px;
+  scroll-behavior: smooth;
+}
+
+.carousel .product {
+  flex: 0 0 auto;
+  width: 220px; /* Fixed width for consistent display */
+  text-align: center;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 🎯 Ensure Responsiveness */
+@media (max-width: 768px) {
+  .product img {
+      height: 150px; /* Adjust height for smaller screens */
   }
-  
-  /* General Styles */
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--sky-blue); /* Soft background */
-    color: var(--deep-sea-teal); /* Dark text */
-  }
-  
-  /* Header */
-  header {
-    padding: 1rem 2rem;
-    background-color: var(--deep-sea-teal); /* Deep Teal */
-    color: white;
-    text-align: center;
-  }
-  
-  /* Main Heading */
-  main h1 {
-    color: var(--pacific-blue); /* Pacific Blue */
-  }
-  
-  /* Buttons */
-  button, .button {
-    background-color: var(--turquoise-teal);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  button:hover, .button:hover {
-    background-color: var(--light-sea-blue); /* Lighter on hover */
-  }
-  
-  /* Links */
-  a {
-    color: var(--pacific-blue);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: var(--light-sea-blue);
-    text-decoration: underline;
-  }
-  
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: var(--deep-sea-teal);
-    color: white;
-  }
-  
-  /* Customizer Section */
-  .customizer-container {
-    background-color: var(--sky-blue);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .preview {
-    background-color: var(--turquoise-teal);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-  }
-  
+}
