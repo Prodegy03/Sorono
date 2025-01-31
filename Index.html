@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/stylesheet.css">
+
+    <title>Sorono - Tumbler E-Commerce</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #e8e8e8;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        header .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        header .logo img {
+            height: 40px;
+            margin-right: 0.5rem;
+        }
+        header nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        header nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 1rem;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .hero-banner {
+            text-align: center;
+            padding: 3rem;
+            background-color: #f8f8f8;
+            margin-bottom: 2rem;
+        }
+        .hero-banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero-banner button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+        .carousel .product {
+            flex: 0 0 auto;
+            width: 220px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 1rem;
+            text-align: center;
+            background-color: white;
+        }
+        .carousel .product img {
+            width: 100%;
+            border-radius: 4px;
+        }
+        .customize-section {
+            background-color: #fff;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+        .customize-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .customize-section button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #e8e8e8;
+            margin-top: 2rem;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo-placeholder.png" alt="Sorono Logo">
+            Sorono
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for tumblers...">
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Shop All Tumblers</a>
+            <a href="#">Categories</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+        </nav>
+        <div>
+            <a href="#">Account</a> | <a href="#">Cart</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-banner">
+            <h1>Customize Your Tumbler</h1>
+            <p>Create your personalized tumbler in just a few steps.</p>
+            <button>Get Started</button>
+        </div>
+
+        <div class="carousel">
+            <div class="product">
+                <img src="Models\christian-dala-K7cnLBMH-cc-unsplash.jpg" alt="Tumbler 1">
+                <h3>Tumbler 1</h3>
+                <p>$20.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Models\natilyn-hicks-photography-nNjuUJ6jOHA-unsplash.jpg" alt="Tumbler 2">
+                <h3>Tumbler 2</h3>
+                <p>$25.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Models\battlecreek-coffee-roasters-Yh_EB2snOrw-unsplash.jpg" alt="Tumbler 3">
+                <h3>Tumbler 3</h3>
+                <p>$30.00</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="customize-section">
+            <h2>Customize Your Tumbler</h2>
+            <p>Use our tool to add your own text, colors, and designs.</p>
+            <button onclick="window.location.href='custom.html'" style="background-color: #007bff; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer;">Start Customizing</button>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sorono. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Your Mug - Sorono</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+    <link rel="stylesheet" href="/CSS/stylesheet.css">
+</head>
+<body>
+    <header>
+        <h1>Sorono - Customize Your Mug</h1>
+    </header>
+
+    <main>
+        <p>Upload your design, add text, and preview your mug in 3D.</p>
+        <div class="upload-container">
+    <label for="imageUpload">Upload an Image:</label>
+    <input type="file" id="imageUpload" accept="image/*">
+    <label for="textUpload">Enter Text:</label>
+    <input type="text" id="textUpload" placeholder="Enter your custom text">
+<label for="fontSize">Font Size:</label>
+    <select id="fontSize">
+        <option value="20">20px</option>
+        <option value="30" selected>30px</option>
+        <option value="40">40px</option>
+        <option value="50">50px</option>
+        <option value="60">60px</option>
+    </select>
+</div>
+        <div class="preview" id="preview"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sorono. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Create scene, camera, and renderer
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x808080); // Set grey background for Three.js scene
+        
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth * 0.8, 500);
+        document.getElementById('preview').appendChild(renderer.domElement);
+
+        // Add lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+        directionalLight.position.set(5, 10, 7.5);
+        scene.add(directionalLight);
+
+        // Orbit Controls for Mouse Rotation
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true; // Smooth rotation
+        controls.dampingFactor = 0.05;
+        controls.rotateSpeed = 0.5;
+        controls.enableZoom = true;
+
+        let mug; // Store the mug model
+
+        // Load the mug model
+        const loader = new THREE.GLTFLoader();
+        loader.load('Models/mug_-_cup.glb', function (gltf) {
+            mug = gltf.scene;
+            scene.add(mug);
+
+            // Scale & Position the Mug
+            mug.scale.set(100, 100, 100);
+            mug.position.set(0, -2, 0);
+
+            animate();
+        }, undefined, function (error) {
+            console.error('Error loading model:', error);
+        });
+
+        // Adjust camera position to better view the mug
+        camera.position.set(0, 5, 20);
+
+        // Animation loop with rotation
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update(); // Enable mouse controls
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Handle image upload and apply texture
+        document.getElementById('textUpload').addEventListener('input', function (event) {
+            const text = event.target.value;
+            if (mug) {
+                const canvas = document.createElement('canvas');
+                canvas.width = 512;
+                canvas.height = 512;
+                const ctx = canvas.getContext('2d');
+
+                // Draw the text on the canvas
+                const fontSize = document.getElementById('fontSize').value; // Get selected font size
+                ctx.font = `${fontSize}px Arial`;
+                ctx.fillStyle = 'black'; // Text color
+                ctx.fillRect(0, 0, canvas.width, canvas.height); // Background (optional)
+                ctx.fillStyle = 'white';
+                ctx.font = '30px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+                // Apply the canvas as a texture to the mug
+                const texture = new THREE.CanvasTexture(canvas);
+                mug.traverse((node) => {
+                    if (node.isMesh) {
+                        node.material.map = texture;
+                        node.material.needsUpdate = true;
+                    }
+                });
+            }
+        });
+        document.getElementById('imageUpload').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const textureLoader = new THREE.TextureLoader();
+                textureLoader.load(e.target.result, function (texture) {
+                    mug.traverse((node) => {
+                        if (node.isMesh) {
+                            node.material.map = texture;
+                            node.material.needsUpdate = true;
+                        }
+                    });
+                });
+            };
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>
